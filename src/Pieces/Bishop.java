@@ -17,20 +17,17 @@ public class Bishop extends Piece{
 		return ID;
 	}
 
-	@Override
-	public boolean isMoveValid() {
-		return false;
-	}
+	
 	
 	public int getPos() {
 		return pos;
 	}
 	
-	public void setPos(int pos){
+	public void setPos(int pos) {
 		this.pos = pos;
 	}
 	
-	public char getColor(){
+	public char getColor() {
 		return color;
 	}
 

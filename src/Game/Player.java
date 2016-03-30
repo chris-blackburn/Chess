@@ -51,7 +51,7 @@ public class Player {
 		return pieces;
 	}
 	
-	public boolean isWhite(){
+	public boolean isWhite() {
 		if (color == 'w')
 			return true;
 		return false;

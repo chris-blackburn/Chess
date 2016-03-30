@@ -10,13 +10,13 @@ public class Game {
 		initBoard();
 		System.out.println(board);
 	}
-	
-	public static void initBoard(){
+
+	public static void initBoard() {
 		white.initPlayerPieces();
 		board.fillBoard(white);
-		
+
 		black.initPlayerPieces();
 		board.fillBoard(black);
 	}
-	
+
 }
