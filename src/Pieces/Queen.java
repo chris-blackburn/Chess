@@ -2,11 +2,14 @@ package Pieces;
 
 public class Queen extends Piece {
 	
-	int[] CANDIDATE_MOVES = {-9, -8, -7, -1, 1, 7, 8, 9}; //combination of Rook and Bishop
+	private final static int[] CANDIDATE_MOVES = {-9, -8, -7, -1, 1, 7, 8, 9}; //combination of Rook and Bishop
 
-	public Queen(int pos) {
-		super(pos);
-		ID = 'Q';
+	public Queen(int pos, char color) {
+		super(pos, color);
+		if (color == 'w')
+			ID = 'Q';
+		else
+			ID = 'q';
 	}
 
 	@Override
@@ -25,6 +28,10 @@ public class Queen extends Piece {
 	
 	public void setPos(int pos){
 		this.pos = pos;
+	}
+	
+	public char getColor(){
+		return color;
 	}
 
 }

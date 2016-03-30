@@ -2,11 +2,14 @@ package Pieces;
 
 public class Bishop extends Piece{
 	
-	int[] CANDIDATE_MOVES = {-9, -7, 7, 9}; //multiples of 7 or 9 convert to diagonal movements
+	private final static int[] CANDIDATE_MOVES = {-9, -7, 7, 9}; //multiples of 7 or 9 convert to diagonal movements
 
-	public Bishop(int pos) {
-		super(pos);
-		ID = 'B';
+	public Bishop(int pos, char color) {
+		super(pos, color);
+		if (color == 'w')
+			ID = 'B';
+		else
+			ID = 'b';
 	}
 
 	@Override
@@ -25,6 +28,10 @@ public class Bishop extends Piece{
 	
 	public void setPos(int pos){
 		this.pos = pos;
+	}
+	
+	public char getColor(){
+		return color;
 	}
 
 }

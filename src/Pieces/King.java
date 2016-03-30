@@ -2,11 +2,14 @@ package Pieces;
 
 public class King extends Piece{
 	
-	int[] CANDIDATE_MOVES = {-9, -8, -7, -1, 1, 7, 8, 9};
+	private final static int[] CANDIDATE_MOVES = {-9, -8, -7, -1, 1, 7, 8, 9}; //all spaces surrounding the king
 
-	public King(int pos) {
-		super(pos);
-		ID = 'K';
+	public King(int pos, char color) {
+		super(pos, color);
+		if (color == 'w')
+			ID = 'K';
+		else
+			ID = 'k';
 	}
 
 	@Override
@@ -25,6 +28,10 @@ public class King extends Piece{
 	
 	public void setPos(int pos){
 		this.pos = pos;
+	}
+	
+	public char getColor(){
+		return color;
 	}
 
 }

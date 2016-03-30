@@ -14,6 +14,7 @@ public class Game {
 	public static void initBoard(){
 		white.initPlayerPieces();
 		board.fillBoard(white);
+		
 		black.initPlayerPieces();
 		board.fillBoard(black);
 	}

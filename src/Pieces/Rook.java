@@ -2,11 +2,14 @@ package Pieces;
 
 public class Rook extends Piece{
 	
-	int[] CANDIDATE_MOVES = {-8, -1, 1, 8}; //multiples of 1 convert to horizontal movements, multiples of 8 convert to vertical movements
+	private final static int[] CANDIDATE_MOVES = {-8, -1, 1, 8}; //multiples of 1 convert to horizontal movements, multiples of 8 convert to vertical movements
 
-	public Rook(int pos) {
-		super(pos);
-		ID = 'R';
+	public Rook(int pos, char color) {
+		super(pos, color);
+		if (color == 'w')
+			ID = 'R';
+		else
+			ID = 'r';
 	}
 
 	@Override
@@ -25,6 +28,10 @@ public class Rook extends Piece{
 	
 	public void setPos(int pos){
 		this.pos = pos;
+	}
+	
+	public char getColor(){
+		return color;
 	}
 
 }

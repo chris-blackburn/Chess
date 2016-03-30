@@ -3,12 +3,13 @@ package Pieces;
 public abstract class Piece {
 	
 	protected char ID;
-	protected int[] CANDIDATE_MOVES = new int[0];
 
 	protected int pos;
+	protected char color;
 
-	public Piece(int pos) {
+	public Piece(int pos, char color) {
 		this.pos = pos;
+		this.color = color;
 		ID = 0;
 	}
 	
@@ -24,5 +25,9 @@ public abstract class Piece {
 	
 	public void setPos(int pos){
 		this.pos = pos;
+	}
+	
+	public char getColor(){
+		return color;
 	}
 }

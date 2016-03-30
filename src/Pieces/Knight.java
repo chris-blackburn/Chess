@@ -2,11 +2,14 @@ package Pieces;
 
 public class Knight extends Piece{
 	
-	int[] CANDIDATE_MOVES = {-17, -15, -10, -6, 6, 10, 15, 17}; //all 8 possible moves, represents the 'L' pattern of the knights movement
+	private final static int[] CANDIDATE_MOVES = {-17, -15, -10, -6, 6, 10, 15, 17}; //all 8 possible moves, represents the 'L' pattern of the knights movement
 
-	public Knight(int pos) {
-		super(pos);
-		ID = 'k';
+	public Knight(int pos, char color) {
+		super(pos, color);
+		if (color == 'w')
+			ID = 'N';
+		else
+			ID = 'n';
 	}
 
 	@Override
@@ -25,6 +28,10 @@ public class Knight extends Piece{
 	
 	public void setPos(int pos){
 		this.pos = pos;
+	}
+	
+	public char getColor(){
+		return color;
 	}
 
 }
