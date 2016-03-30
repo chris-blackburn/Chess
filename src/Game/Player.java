@@ -6,10 +6,13 @@ import java.util.List;
 import Pieces.*;
 
 public class Player {
+	private final int BOARD_SIZE = 8 * 8; //8 x 8 board
 	private final int PAWNS = 8;
+	private final int SECOND_ROW = 8; //adds eight to initialize pawns
 
 	private List<Piece> pieces = new ArrayList<>();
 
+	//determines alliance based on the color character sent - 'b' or 'w'
 	private char color;
 
 	public Player(char color) {
@@ -17,10 +20,10 @@ public class Player {
 	}
 
 	public void initPlayerPieces() {
-		if (color == 'w') {
-			// place pawns for white
+		if (color == 'b') {
+			// place pawns for black
 			for (int i = 0; i < PAWNS; i++)
-				pieces.add(new Pawn(i, 2));/*
+				pieces.add(new Pawn(SECOND_ROW + i));/*
 			pieces.add(new Rook(0, 0));
 			pieces.add(new Rook(7, 0));
 			pieces.add(new Bishop(2, 0));
@@ -30,9 +33,9 @@ public class Player {
 			pieces.add(new King(4, 0));
 			pieces.add(new Queen(3, 0));*/
 		} else {
-			// places pawns for black
+			// places pawns for white
 			for (int i = 0; i < PAWNS; i++)
-				pieces.add(new Pawn(i, 6));/*
+				pieces.add(new Pawn((BOARD_SIZE - SECOND_ROW) - i));/*
 			pieces.add(new Rook(0, 7));
 			pieces.add(new Rook(7, 7));
 			pieces.add(new Bishop(2, 7));

@@ -6,19 +6,21 @@ import Pieces.*;
 
 public class Board {
 	
-	private Tile[][] board = new Tile[8][8];
+	private final int BOARD_SIZE = 8 * 8; //8 x 8 board
+	
+	private Tile[] board = new Tile[BOARD_SIZE];
 
 	public Board(){
 		//creates the blank board
-		for (int i = 0; i < 8; i++)
-			for (int j = 0; j < 8; j++)
-					board[i][j] = new Tile(null);
+		for (int i = 0; i < BOARD_SIZE; i++)
+				board[i] = new Tile(null);
 	}
 	
 	public void initBoard(Player player){
 		//grabs coordinates and pieces from each player to initialize board
 		List<Piece> pieces = player.getPieces();
 		for (Piece piece : pieces)
-			board[piece.getX()][piece.getY()].setPiece(piece);
+			board[piece.getPos()].setPiece(piece);
 	}
+	
 }

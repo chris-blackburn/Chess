@@ -1,34 +1,27 @@
 package Pieces;
 
 public abstract class Piece {
+	
+	protected final char ID = 0;
+	protected final int[] CANDIDATE_MOVES = new int[0];
 
-	private int x, y;
+	private int pos;
 
-	public Piece(int x, int y) {
-		this.x = x;
-		this.y = y;
-	}
-
-	public boolean isMoveValid(int fromX, int fromY, int toX, int toY){
-		//to keep moving nowhere from being a valid move
-		if (fromX == toX && fromY == toY)
-			return false;
-		return true;
-	}
-
-	public int getX() {
-		return x;
-	}
-
-	public int getY() {
-		return y;
+	public Piece(int pos) {
+		this.pos = pos;
 	}
 	
-	public void setX(int x){
-		this.x = x;
+	public abstract char getID();
+	
+	//checks if the movement submitted is valid
+	public abstract boolean isMoveValid(int fromPos, int toPos);
+
+	//simple movement of the piece
+	public int getPos() {
+		return pos;
 	}
 	
-	public void setY(int y){
-		this.y = y;
+	public void setPos(int pos){
+		this.pos = pos;
 	}
 }
