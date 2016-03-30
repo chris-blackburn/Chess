@@ -15,7 +15,7 @@ public abstract class Piece {
 	public abstract char getID();
 	
 	//checks if the movement submitted is valid
-	public abstract boolean isMoveValid(int newPos);
+	public abstract boolean isMoveValid();
 
 	//simple movement of the piece
 	public int getPos() {

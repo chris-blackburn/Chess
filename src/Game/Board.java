@@ -48,4 +48,12 @@ public class Board {
 					string += board[i - 1].getPiece().getID() + " \n";
 		return string;
 	}
+	
+	public void printBoard(){
+		for (int i = 1; i <= BOARD_SIZE; i++)
+			if (i % 8 != 0)
+				System.out.print(truePos[i - 1] + " ");
+			else
+				System.out.println(truePos[i - 1]);
+	}
 }

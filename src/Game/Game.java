@@ -17,6 +17,5 @@ public class Game {
 		black.initPlayerPieces();
 		board.fillBoard(black);
 	}
-
 	
 }

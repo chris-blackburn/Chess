@@ -1,13 +1,12 @@
 package Pieces;
 
-public class Pawn extends Piece{
+public class Knight extends Piece{
 	
-	//private boolean isFirstMove = true;
-	int[] CANDIDATE_MOVES = {7, 8, 9, 16}; //can move up one (+8), up two (+16), or diagonal to capture (+7, +9)
+	int[] CANDIDATE_MOVES = {-17, -15, -10, -6, 6, 10, 15, 17}; //all 8 possible moves, represents the 'L' pattern of the knights movement
 
-	public Pawn(int pos) {
+	public Knight(int pos) {
 		super(pos);
-		ID = 'P';
+		ID = 'k';
 	}
 
 	@Override
@@ -17,7 +16,6 @@ public class Pawn extends Piece{
 
 	@Override
 	public boolean isMoveValid() {
-		
 		return false;
 	}
 	

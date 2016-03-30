@@ -1,13 +1,12 @@
 package Pieces;
 
-public class Pawn extends Piece{
+public class Queen extends Piece {
 	
-	//private boolean isFirstMove = true;
-	int[] CANDIDATE_MOVES = {7, 8, 9, 16}; //can move up one (+8), up two (+16), or diagonal to capture (+7, +9)
+	int[] CANDIDATE_MOVES = {-9, -8, -7, -1, 1, 7, 8, 9}; //combination of Rook and Bishop
 
-	public Pawn(int pos) {
+	public Queen(int pos) {
 		super(pos);
-		ID = 'P';
+		ID = 'Q';
 	}
 
 	@Override
@@ -17,7 +16,6 @@ public class Pawn extends Piece{
 
 	@Override
 	public boolean isMoveValid() {
-		
 		return false;
 	}
 	
