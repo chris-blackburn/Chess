@@ -1,22 +1,22 @@
 package Game;
 
 public class Game {
-	private Player white = new Player('w');
-	private Player black = new Player('b');
+	private static Player white = new Player('w');
+	private static Player black = new Player('b');
 
-	private Board board = new Board();
+	private static Board board = new Board();
 
-	public void main(String args[]) {
-		
+	public static void main(String args[]) {
+		initBoard();
+		System.out.println(board);
 	}
 	
-	public void initBoard(){
-		board.initBoard(white);
-		board.initBoard(black);
-	}
-	
-	public Board getBoard(){
-		return board;
+	public static void initBoard(){
+		white.initPlayerPieces();
+		board.fillBoard(white);
+		black.initPlayerPieces();
+		board.fillBoard(black);
 	}
 
+	
 }

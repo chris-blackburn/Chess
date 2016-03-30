@@ -32,10 +32,10 @@ public class Player {
 			pieces.add(new Knight(6, 0));
 			pieces.add(new King(4, 0));
 			pieces.add(new Queen(3, 0));*/
-		}/* else {
+		}else {
 			// places pawns for black
 			for (int i = 0; i < PAWNS; i++)
-				pieces.add(new Pawn((BOARD_SIZE - SECOND_ROW) - i));
+				pieces.add(new Pawn(((BOARD_SIZE - 1) - SECOND_ROW) - i));/*//subtract one from BOARD_SIZE because arrays start at 0
 			pieces.add(new Rook(0, 7));
 			pieces.add(new Rook(7, 7));
 			pieces.add(new Bishop(2, 7));
@@ -43,8 +43,8 @@ public class Player {
 			pieces.add(new Knight(1, 7));
 			pieces.add(new Knight(6, 7));
 			pieces.add(new King(4, 7));
-			pieces.add(new Queen(3, 7));
-		}*/
+			pieces.add(new Queen(3, 7));*/
+		}
 	}
 
 	public List<Piece> getPieces() {
