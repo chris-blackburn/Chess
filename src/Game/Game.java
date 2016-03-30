@@ -7,6 +7,10 @@ public class Game {
 	private Board board = new Board();
 
 	public void main(String args[]) {
+		
+	}
+	
+	public void initBoard(){
 		board.initBoard(white);
 		board.initBoard(black);
 	}
