@@ -9,13 +9,26 @@ public abstract class Piece {
 		this.y = y;
 	}
 
-	public abstract boolean isMoveValid();
+	public boolean isMoveValid(int fromX, int fromY, int toX, int toY){
+		//to keep moving nowhere from being a valid move
+		if (fromX == toX && fromY == toY)
+			return false;
+		return true;
+	}
 
-	public int getLocX() {
+	public int getX() {
 		return x;
 	}
 
-	public int getLocY() {
+	public int getY() {
 		return y;
+	}
+	
+	public void setX(int x){
+		this.x = x;
+	}
+	
+	public void setY(int y){
+		this.y = y;
 	}
 }

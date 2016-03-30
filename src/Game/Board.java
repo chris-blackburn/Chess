@@ -19,6 +19,6 @@ public class Board {
 		//grabs coordinates and pieces from each player to initialize board
 		List<Piece> pieces = player.getPieces();
 		for (Piece piece : pieces)
-			board[piece.getLocX()][piece.getLocY()].setPiece(piece);
+			board[piece.getX()][piece.getY()].setPiece(piece);
 	}
 }

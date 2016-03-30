@@ -7,12 +7,4 @@ public class Pawn extends Piece{
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public boolean isMoveValid() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	
-
-
 }
