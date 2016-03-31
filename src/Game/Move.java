@@ -10,7 +10,7 @@ public class Move {
 
 	}
 
-	public class norm extends Move {
+	public class normal extends Move {
 
 	}
 

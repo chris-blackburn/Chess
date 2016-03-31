@@ -1,9 +1,16 @@
 package Pieces;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import Game.Exceptions;
+import Game.Move;
+import Game.Tile;
+
 public class Pawn extends Piece {
 
-	// private boolean isFirstMove = true;
-	// move
+	private boolean isFirstMove = true;
+
 	private final static int[] CANDIDATE_MOVES = { 7, 8, 9, 16 }; // can move up one (+8), up two for first move (+16), or diagonal to capture (+7, +9)
 
 	public Pawn(int pos, char color) {
@@ -15,22 +22,22 @@ public class Pawn extends Piece {
 	}
 
 	@Override
-	public char getID() {
-		return ID;
-	}
-
-	
-
-	public int getPos() {
-		return pos;
-	}
-
-	public void setPos(int pos) {
-		this.pos = pos;
-	}
-
-	public char getColor() {
-		return color;
+	public List<Move> calculatePossibleMoves(Tile[] board) {
+		List<Move> legalMoves = new ArrayList<>();
+		int destination;
+		
+		for (int currentPossibilty : CANDIDATE_MOVES){
+			destination = pos + currentPossibilty;
+			if(Exceptions.posExists(destination) && !Exceptions.isWrapping(ID, pos, currentPossibilty)){ // existance and anti-wrapping/exceptions to candidate move rules
+				if (!board[destination].isOccupied() /*and doesn't place you in check */){
+					legalMoves.add(new Move());
+				}else if (board[destination].isOccupied() /*and doesn't place you in check */){
+					if (board[destination].getPiece().getColor() != color)
+						legalMoves.add(new Move());
+				}
+			}
+		}
+		return legalMoves;
 	}
 
 	/*
