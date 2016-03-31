@@ -9,6 +9,7 @@ public class Game {
 	public static void main(String args[]) {
 		initBoard();
 		System.out.println(board);
+		board.printBoard();
 	}
 
 	public static void initBoard() {

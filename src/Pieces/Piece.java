@@ -2,7 +2,8 @@ package Pieces;
 
 import java.util.List;
 
-import Game.*;
+import Game.Move;
+import Game.Tile;
 
 public abstract class Piece {
 
@@ -17,8 +18,11 @@ public abstract class Piece {
 		ID = 0;
 	}
 
-	public abstract char getID();
-
+	public char getID(){
+		return ID;
+	}
+	
+	// creates a list of possible moves and returns it
 	public abstract List<Move> calculatePossibleMoves(Tile[] board);
 
 	// simple movement of the piece

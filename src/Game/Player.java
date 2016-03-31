@@ -8,7 +8,7 @@ import Pieces.*;
 public class Player {
 	private final int BOARD_SIZE = 8 * 8; //8 x 8 board
 	private final int PAWNS = 8;
-	private final int SECOND_ROW = 8; //adds eight to initialize pawns
+	private final int SECOND_ROW = 8; //adds or subtracts eight to initialize pawns
 
 	private List<Piece> pieces = new ArrayList<>();
 
