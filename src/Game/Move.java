@@ -6,11 +6,11 @@ public class Move {
 		
 	}
 	
-	public class captureMove extends Move {
+	public class capture extends Move {
 
 	}
 
-	public class normalMove extends Move {
+	public class norm extends Move {
 
 	}
 

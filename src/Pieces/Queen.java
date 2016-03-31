@@ -1,5 +1,12 @@
 package Pieces;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import Game.Exceptions;
+import Game.Move;
+import Game.Tile;
+
 public class Queen extends Piece {
 	
 	private final static int[] CANDIDATE_MOVES = {-9, -8, -7, -1, 1, 7, 8, 9}; //combination of Rook and Bishop
@@ -13,22 +20,26 @@ public class Queen extends Piece {
 	}
 
 	@Override
-	public char getID() {
-		return ID;
-	}
+	public List<Move> calculatePossibleMoves(Tile[] board) {
+		List<Move> legalMoves = new ArrayList<>();
+		int destination;
 
-	
-	
-	public int getPos() {
-		return pos;
+		for (int currentPossibilty : CANDIDATE_MOVES){
+			destination = pos;
+			while (Exceptions.posExists(destination)) { // existance and anti-wrapping/exceptions to candidate move rules
+				destination += currentPossibilty;
+				if (Exceptions.posExists(destination) && !Exceptions.isWrapping(ID, pos, currentPossibilty)){
+					if (!board[destination].isOccupied()){
+						legalMoves.add(new Move());
+					}else if (board[destination].isOccupied()){
+						if (board[destination].getPiece().getColor() != color)
+							legalMoves.add(new Move());
+					}
+					break;
+				}
+			}
+		}
+		return legalMoves;
 	}
 	
-	public void setPos(int pos) {
-		this.pos = pos;
-	}
-	
-	public char getColor() {
-		return color;
-	}
-
 }

@@ -2,9 +2,9 @@ package Pieces;
 
 public class Pawn extends Piece {
 
-	// private boolean isFirstMove = true; //add 8 twice if desired during first
+	// private boolean isFirstMove = true;
 	// move
-	private final static int[] CANDIDATE_MOVES = { 7, 8, 9 }; // can move up one (+8), or diagonal to capture (+7, +9)
+	private final static int[] CANDIDATE_MOVES = { 7, 8, 9, 16 }; // can move up one (+8), up two for first move (+16), or diagonal to capture (+7, +9)
 
 	public Pawn(int pos, char color) {
 		super(pos, color);

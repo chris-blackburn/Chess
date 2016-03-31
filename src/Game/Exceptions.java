@@ -27,12 +27,15 @@ public class Exceptions {
 		if (ID == 'b' || ID == 'B')
 			if (FIRST_COLUMN[pos]) {
 				return (candidate == -9 || candidate == 7);
-			} else if (SECOND_COLUMN[pos])
+			} else if (EIGTH_COLUMN[pos])
 				return (candidate == -7 || candidate == 9);
 
 		// king exceptions
 		if (ID == 'k' || ID == 'K')
-			return true;
+			if (FIRST_COLUMN[pos]) {
+				return (candidate == -9 || candidate == -1 || candidate == 7);
+			} else if (EIGTH_COLUMN[pos])
+				return (candidate == -7 || candidate == 1 || candidate == 9);
 
 		// knight exceptions
 		if (ID == 'n' || ID == 'N')
@@ -51,11 +54,17 @@ public class Exceptions {
 
 		// queen exceptions
 		if (ID == 'q' || ID == 'Q')
-			return true;
+			if (FIRST_COLUMN[pos]) {
+				return (candidate == -9 || candidate == -1 || candidate == 7);
+			} else if (EIGTH_COLUMN[pos])
+				return (candidate == -7 || candidate == 1 || candidate == 9);
 
 		// rook exceptions
 		if (ID == 'r' || ID == 'R')
-			return true;
+			if (FIRST_COLUMN[pos]) {
+				return (candidate == -1);
+			} else if (EIGTH_COLUMN[pos])
+				return (candidate == 1);
 
 		return true;
 	}

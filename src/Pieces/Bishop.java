@@ -26,7 +26,7 @@ public class Bishop extends Piece{
 
 		for (int currentPossibilty : CANDIDATE_MOVES){
 			destination = pos;
-			while (Exceptions.posExists(destination)) { // existance and anti-wrapping/execptions to candidate move rules
+			while (Exceptions.posExists(destination)) { // existance and anti-wrapping/exceptions to candidate move rules
 				destination += currentPossibilty;
 				if (Exceptions.posExists(destination) && !Exceptions.isWrapping(ID, pos, currentPossibilty)){
 					if (!board[destination].isOccupied()){
