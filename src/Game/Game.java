@@ -6,18 +6,22 @@ public class Game {
 
 	private static Board board = new Board();
 
-	public static void main(String args[]) {
+	public Game() {
 		initBoard();
-		System.out.println(board);
-		board.printBoard();
 	}
 
 	public static void initBoard() {
+		// initiate white
 		white.initPlayerPieces();
 		board.fillBoard(white);
 
+		// initiate black
 		black.initPlayerPieces();
 		board.fillBoard(black);
+	}
+	
+	public String toString(){
+		return board.toString();
 	}
 
 }

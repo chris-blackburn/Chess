@@ -25,6 +25,8 @@ public class Exceptions {
 	}
 	
 	public static final boolean[] FIRST_ROW = defineRow(0);
+	public static final boolean[] SECOND_ROW = defineRow(1);
+	public static final boolean[] SEVENTH_ROW = defineRow(6);
 	public static final boolean[] EIGTH_ROW = defineRow(7);
 	
 	private static boolean[] defineRow(int rowNum){
@@ -34,7 +36,7 @@ public class Exceptions {
 		return row;
 	}
 
-	public static boolean isWrapping(Piece piece, int candidate) {
+	public static boolean isWrapping(Piece piece, int candidate) { // prevents wrapping around the board
 		// bishop exceptions
 		if (piece.getID() == 'b' || piece.getID() == 'B')
 			if (FIRST_COLUMN[piece.getPos()]) {

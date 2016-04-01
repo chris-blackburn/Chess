@@ -50,10 +50,4 @@ public class Player {
 	public List<Piece> getPieces() {
 		return pieces;
 	}
-	
-	public boolean isWhite() {
-		if (color == 'w')
-			return true;
-		return false;
-	}
 }
