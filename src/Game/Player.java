@@ -6,6 +6,11 @@ import java.util.List;
 import Pieces.*;
 
 public class Player {
+	
+	
+	
+	//the old Player class
+	/*
 	private final int BOARD_SIZE = 8 * 8; //8 x 8 board
 	private final int PAWNS = 8;
 	private final int SECOND_ROW = 8; //adds or subtracts eight to initialize pawns
@@ -50,4 +55,5 @@ public class Player {
 	public List<Piece> getPieces() {
 		return pieces;
 	}
+	*/
 }

@@ -3,7 +3,7 @@ package Pieces;
 import java.util.ArrayList;
 import java.util.List;
 
-import Game.Exceptions;
+import Game.Board;
 import Game.Move;
 import Game.Tile;
 
@@ -20,7 +20,7 @@ public class Bishop extends Piece{
 	}
 
 	@Override
-	public List<Move> calculatePossibleMoves(Tile[] board) {
+	public List<Move> calculatePossibleMoves(Board board) {
 		List<Move> legalMoves = new ArrayList<>();
 		int destination;
 

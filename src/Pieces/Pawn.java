@@ -3,9 +3,8 @@ package Pieces;
 import java.util.ArrayList;
 import java.util.List;
 
-import Game.Exceptions;
 import Game.Move;
-import Game.Tile;
+import Game.Board;
 
 public class Pawn extends Piece {
 
@@ -20,7 +19,7 @@ public class Pawn extends Piece {
 	}
 
 	@Override
-	public List<Move> calculatePossibleMoves(Tile[] board) {
+	public List<Move> calculatePossibleMoves(Board board) {
 		List<Move> legalMoves = new ArrayList<>();
 		int destination;
 		
@@ -59,7 +58,7 @@ public class Pawn extends Piece {
 		return false;
 	}
 	
-	private boolean isJumpingOtherPiece(Tile[] board, int destination){
+	private boolean isJumpingOtherPiece(Board board, int destination){
 		if (color == 'w' && board[destination + 8].isOccupied())
 			return true;
 		if (color == 'b' && board[destination - 8].isOccupied())

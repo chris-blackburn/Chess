@@ -3,9 +3,8 @@ package Pieces;
 import java.util.ArrayList;
 import java.util.List;
 
-import Game.Exceptions;
+import Game.Board;
 import Game.Move;
-import Game.Tile;
 
 public class Knight extends Piece{
 	
@@ -21,7 +20,7 @@ public class Knight extends Piece{
 
 	// makes a list of possible moves, exceptions/anti-wrapping not in place
 	@Override
-	public List<Move> calculatePossibleMoves(Tile[] board) {
+	public List<Move> calculatePossibleMoves(Board board) {
 		List<Move> legalMoves = new ArrayList<>();
 		int destination;
 
