@@ -2,7 +2,7 @@ package Game;
 
 import Pieces.Piece;
 
-public class Exceptions {
+public class Exceptions { // there are many exceptions to the rules when on the edges of the board, this class fixes that
 
 	public static final int BOARD_SIZE = 8 * 8;
 
@@ -66,9 +66,13 @@ public class Exceptions {
 		if (piece.getID() == 'p' || piece.getID() == 'P')
 			if (FIRST_COLUMN[piece.getPos()] && piece.getColor() == 'b') {
 				return (candidate == 7);
-			} else if (EIGTH_COLUMN[piece.getPos()] && piece.getColor() == 'w')
+			} else if (EIGTH_COLUMN[piece.getPos()] && piece.getColor() == 'w') {
 				return (candidate == 7);
-
+			} else if (FIRST_COLUMN[piece.getPos()] && piece.getColor() == 'w') {
+				return (candidate == 9);
+			} else if (EIGTH_COLUMN[piece.getPos()] && piece.getColor() == 'b')
+				return (candidate == 9);
+		
 		// queen exceptions
 		if (piece.getID() == 'q' || piece.getID() == 'Q')
 			if (FIRST_COLUMN[piece.getPos()]) {

@@ -26,7 +26,7 @@ public class Pawn extends Piece {
 		
 		for (int currentPossibilty : CANDIDATE_MOVES){
 			destination = pos + (currentPossibilty * direction());
-			if(Exceptions.posExists(destination)){ // existance
+			if(Exceptions.posExists(destination)){ // existence
 				if (currentPossibilty == 8 && !board[destination].isOccupied()){ // normal moves
 					legalMoves.add(new Move());
 				} else if(currentPossibilty == 16 
