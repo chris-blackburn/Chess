@@ -28,7 +28,7 @@ public class Queen extends Piece {
 			destination = pos;
 			while (Exceptions.posExists(destination)) { // existance and anti-wrapping/exceptions to candidate move rules
 				destination += currentPossibilty;
-				if (Exceptions.posExists(destination) && !Exceptions.isWrapping(ID, pos, currentPossibilty)){
+				if (Exceptions.posExists(destination) && !Exceptions.isWrapping(this, currentPossibilty)){
 					if (!board[destination].isOccupied()){
 						legalMoves.add(new Move());
 					}else if (board[destination].isOccupied()){

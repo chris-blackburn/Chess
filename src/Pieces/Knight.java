@@ -27,7 +27,7 @@ public class Knight extends Piece{
 
 		for (int currentPossibilty : CANDIDATE_MOVES){
 			destination = pos + currentPossibilty;
-			if(Exceptions.posExists(destination) && !Exceptions.isWrapping(ID, pos, currentPossibilty)){ // existance and anti-wrapping/exceptions to candidate move rules
+			if(Exceptions.posExists(destination) && !Exceptions.isWrapping(this, currentPossibilty)){ // existance and anti-wrapping/exceptions to candidate move rules
 				if (!board[destination].isOccupied()){
 					legalMoves.add(new Move());
 				}else if (board[destination].isOccupied()){
