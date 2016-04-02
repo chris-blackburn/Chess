@@ -26,16 +26,16 @@ public class Pawn extends Piece {
 		for (int currentPossibilty : CANDIDATE_MOVES){
 			destination = pos + (currentPossibilty * direction());
 			if(Exceptions.posExists(destination)){ // existence
-				if (currentPossibilty == 8 && !board[destination].isOccupied()){ // normal moves
+				if (currentPossibilty == 8 && !board.getTile(destination).isOccupied()){ // normal moves
 					legalMoves.add(new Move());
 				} else if(currentPossibilty == 16 
-						&& !board[destination].isOccupied() 
+						&& !board.getTile(destination).isOccupied() 
 						&& isJumpingOtherPiece(board, destination)
 						&& isFirstMove()){ // jump move
 					legalMoves.add(new Move());
 				} else if(!Exceptions.isWrapping(this, currentPossibilty) // capture moves
-						&& board[destination].isOccupied()
-						&& board[destination].getPiece().getColor() != color){
+						&& board.getTile(destination).isOccupied()
+						&& board.getTile(destination).getPiece().getColor() != color){
 					legalMoves.add(new Move());
 				}
 			}
@@ -59,9 +59,9 @@ public class Pawn extends Piece {
 	}
 	
 	private boolean isJumpingOtherPiece(Board board, int destination){
-		if (color == 'w' && board[destination + 8].isOccupied())
+		if (color == 'w' && board.getTile(destination + 8).isOccupied())
 			return true;
-		if (color == 'b' && board[destination - 8].isOccupied())
+		if (color == 'b' && board.getTile(destination - 8).isOccupied())
 			return true;
 		return false;
 	}

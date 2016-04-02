@@ -1,17 +1,13 @@
 package Game;
 
-import java.util.ArrayList;
-import java.util.List;
 
-import Pieces.*;
 
 public class Player {
 	
-	
+}
 	
 	//the old Player class
 	/*
-	private final int BOARD_SIZE = 8 * 8; //8 x 8 board
 	private final int PAWNS = 8;
 	private final int SECOND_ROW = 8; //adds or subtracts eight to initialize pawns
 
@@ -40,7 +36,7 @@ public class Player {
 		}else {
 			// places pawns for white
 			for (int i = 0; i < PAWNS; i++)
-				pieces.add(new Pawn(((BOARD_SIZE - 1) - SECOND_ROW) - i, color)); //subtract one from BOARD_SIZE because arrays start at 0
+				pieces.add(new Pawn(((Board.BOARD_SIZE - 1) - SECOND_ROW) - i, color)); //subtract one from BOARD_SIZE because arrays start at 0
 			pieces.add(new Rook(56, color));
 			pieces.add(new Rook(63, color));
 			pieces.add(new Knight(57, color));
@@ -56,4 +52,3 @@ public class Player {
 		return pieces;
 	}
 	*/
-}

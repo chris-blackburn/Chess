@@ -7,10 +7,9 @@ import Game.Move;
 
 public abstract class Piece {
 
-	protected char ID;
-
 	protected int pos;
 	protected char color;
+	protected char ID;
 
 	public Piece(int pos, char color) {
 		this.pos = pos;

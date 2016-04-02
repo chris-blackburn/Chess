@@ -5,7 +5,6 @@ import java.util.List;
 
 import Game.Board;
 import Game.Move;
-import Game.Tile;
 
 public class Bishop extends Piece{
 	
@@ -29,10 +28,10 @@ public class Bishop extends Piece{
 			while (Exceptions.posExists(destination)) { // existence and anti-wrapping/exceptions to candidate move rules
 				destination += currentPossibilty;
 				if (Exceptions.posExists(destination) && !Exceptions.isWrapping(this, currentPossibilty)){
-					if (!board[destination].isOccupied()){
+					if (!board.getTile(destination).isOccupied()){
 						legalMoves.add(new Move());
-					}else if (board[destination].isOccupied()){
-						if (board[destination].getPiece().getColor() != color)
+					}else if (board.getTile(destination).isOccupied()){
+						if (board.getTile(destination).getPiece().getColor() != color)
 							legalMoves.add(new Move());
 					}
 					break;
