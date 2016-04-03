@@ -1,53 +1,46 @@
 package Game;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
-import Pieces.*;
+import Pieces.Piece;
 
 public class Player {
-	private final int BOARD_SIZE = 8 * 8; //8 x 8 board
-	private final int PAWNS = 8;
-	private final int SECOND_ROW = 8; //adds or subtracts eight to initialize pawns
-
-	private List<Piece> pieces = new ArrayList<>();
-
-	//determines alliance based on the color character sent - 'b' or 'w'
-	private char color;
-
-	public Player(char color) {
-		this.color = color;
+	
+	private final char color;
+	private Board board;
+	private Collection<Piece> activePieces;
+	private final Piece king;
+	
+	
+	public Player(Board board, Collection<Piece> activePieces) {
+		this.board = board;
+		this.activePieces = activePieces;
+		king = getKing();
+		color = king.getID();
+	}	
+	
+	private Piece getKing() {
+		for (Piece piece : activePieces)
+			if(piece.getID() == 'K' || piece.getID() == 'k')
+				return piece;
+		return null;
 	}
-
-	public void initPlayerPieces() {
-		if (color == 'b') {
-			// place pawns for black
-			for (int i = 0; i < PAWNS; i++)
-				pieces.add(new Pawn(SECOND_ROW + i, color));
-			pieces.add(new Rook(0, color));
-			pieces.add(new Rook(7, color));
-			pieces.add(new Knight(1, color));
-			pieces.add(new Knight(6, color));
-			pieces.add(new Bishop(2, color));
-			pieces.add(new Bishop(5, color));
-			pieces.add(new King(3, color));
-			pieces.add(new Queen(4, color));
-		}else {
-			// places pawns for white
-			for (int i = 0; i < PAWNS; i++)
-				pieces.add(new Pawn(((BOARD_SIZE - 1) - SECOND_ROW) - i, color)); //subtract one from BOARD_SIZE because arrays start at 0
-			pieces.add(new Rook(56, color));
-			pieces.add(new Rook(63, color));
-			pieces.add(new Knight(57, color));
-			pieces.add(new Knight(62, color));
-			pieces.add(new Bishop(58, color));
-			pieces.add(new Bishop(61, color));
-			pieces.add(new King(59, color));
-			pieces.add(new Queen(60, color));
-		}
+	
+	public void makeMove(Move move) {
+		move.executeMove();
 	}
-
-	public List<Piece> getPieces() {
-		return pieces;
+	
+	//TODO get dese done l8a
+	public boolean isInCheck() {
+		return false;
 	}
+	
+	public boolean isInCheckMate() {
+		return false;
+	}
+	
+	public boolean isInStaleMate() {
+		return false;
+	}
+	
 }

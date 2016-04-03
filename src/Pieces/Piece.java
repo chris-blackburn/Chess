@@ -2,15 +2,14 @@ package Pieces;
 
 import java.util.List;
 
+import Game.Board;
 import Game.Move;
-import Game.Tile;
 
 public abstract class Piece {
 
-	protected char ID;
-
 	protected int pos;
 	protected char color;
+	protected char ID;
 
 	public Piece(int pos, char color) {
 		this.pos = pos;
@@ -23,7 +22,7 @@ public abstract class Piece {
 	}
 	
 	// creates a list of possible moves and returns it
-	public abstract List<Move> calculatePossibleMoves(Tile[] board);
+	public abstract List<Move> calculatePossibleMoves(Board board);
 
 	// simple movement of the piece
 	public int getPos() {

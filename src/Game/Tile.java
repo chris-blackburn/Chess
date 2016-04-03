@@ -6,6 +6,7 @@ import Pieces.Piece;
 //the board object is an array of Tiles
 
 public class Tile {
+	
 	private Piece piece;
 
 	public Tile() {

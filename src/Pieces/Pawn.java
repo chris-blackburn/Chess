@@ -3,9 +3,8 @@ package Pieces;
 import java.util.ArrayList;
 import java.util.List;
 
-import Game.Exceptions;
 import Game.Move;
-import Game.Tile;
+import Game.Board;
 
 public class Pawn extends Piece {
 
@@ -20,24 +19,24 @@ public class Pawn extends Piece {
 	}
 
 	@Override
-	public List<Move> calculatePossibleMoves(Tile[] board) {
+	public List<Move> calculatePossibleMoves(Board board) {
 		List<Move> legalMoves = new ArrayList<>();
 		int destination;
 		
 		for (int currentPossibilty : CANDIDATE_MOVES){
 			destination = pos + (currentPossibilty * direction());
 			if(Exceptions.posExists(destination)){ // existence
-				if (currentPossibilty == 8 && !board[destination].isOccupied()){ // normal moves
-					legalMoves.add(new Move());
+				if (currentPossibilty == 8 && !board.getTile(destination).isOccupied()){ // normal moves
+					legalMoves.add(new Move(pos, destination, board));
 				} else if(currentPossibilty == 16 
-						&& !board[destination].isOccupied() 
+						&& !board.getTile(destination).isOccupied() 
 						&& isJumpingOtherPiece(board, destination)
 						&& isFirstMove()){ // jump move
-					legalMoves.add(new Move());
+					legalMoves.add(new Move(pos, destination, board));
 				} else if(!Exceptions.isWrapping(this, currentPossibilty) // capture moves
-						&& board[destination].isOccupied()
-						&& board[destination].getPiece().getColor() != color){
-					legalMoves.add(new Move());
+						&& board.getTile(destination).isOccupied()
+						&& board.getTile(destination).getPiece().getColor() != color){
+					legalMoves.add(new Move(pos, destination, board));
 				}
 			}
 		}
@@ -59,10 +58,10 @@ public class Pawn extends Piece {
 		return false;
 	}
 	
-	private boolean isJumpingOtherPiece(Tile[] board, int destination){
-		if (color == 'w' && board[destination + 8].isOccupied())
+	private boolean isJumpingOtherPiece(Board board, int destination){
+		if (color == 'w' && board.getTile(destination + 8).isOccupied())
 			return true;
-		if (color == 'b' && board[destination - 8].isOccupied())
+		if (color == 'b' && board.getTile(destination - 8).isOccupied())
 			return true;
 		return false;
 	}

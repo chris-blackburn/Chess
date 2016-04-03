@@ -3,9 +3,8 @@ package Pieces;
 import java.util.ArrayList;
 import java.util.List;
 
-import Game.Exceptions;
+import Game.Board;
 import Game.Move;
-import Game.Tile;
 
 public class King extends Piece{
 	
@@ -20,18 +19,18 @@ public class King extends Piece{
 	}
 
 	@Override
-	public List<Move> calculatePossibleMoves(Tile[] board) {
+	public List<Move> calculatePossibleMoves(Board board) {
 		List<Move> legalMoves = new ArrayList<>();
 		int destination;
 		
 		for (int currentPossibilty : CANDIDATE_MOVES){
 			destination = pos + currentPossibilty;
 			if(Exceptions.posExists(destination) && !Exceptions.isWrapping(this, currentPossibilty)){ // existence and anti-wrapping/exceptions to candidate move rules
-				if (!board[destination].isOccupied() /*and doesn't place you in check */){
-					legalMoves.add(new Move());
-				}else if (board[destination].isOccupied() /*and doesn't place you in check */){
-					if (board[destination].getPiece().getColor() != color)
-						legalMoves.add(new Move());
+				if (!board.getTile(destination).isOccupied() /*and doesn't place you in check */){
+					legalMoves.add(new Move(pos, destination, board));
+				}else if (board.getTile(destination).isOccupied() /*and doesn't place you in check */){
+					if (board.getTile(destination).getPiece().getColor() != color)
+						legalMoves.add(new Move(pos, destination, board));
 				}
 			}
 		}

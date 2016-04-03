@@ -2,16 +2,17 @@ package Game;
 
 public class Move {
 	
-	public Move(){
-		
+	private final int pos, destination;
+	private final Board board;
+	
+	public Move(int pos, int destination, Board board) {
+		this.pos = pos;
+		this.destination = destination;
+		this.board = board;
 	}
 	
-	public class capture extends Move {
-
+	public void executeMove() {
+		board.getTile(destination).setPiece(board.getTile(pos).getPiece());
+		board.getTile(pos).setPiece(null);
 	}
-
-	public class normal extends Move {
-
-	}
-
 }

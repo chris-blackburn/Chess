@@ -3,9 +3,8 @@ package Pieces;
 import java.util.ArrayList;
 import java.util.List;
 
-import Game.Exceptions;
 import Game.Move;
-import Game.Tile;
+import Game.Board;
 
 public class Queen extends Piece {
 	
@@ -20,7 +19,7 @@ public class Queen extends Piece {
 	}
 
 	@Override
-	public List<Move> calculatePossibleMoves(Tile[] board) {
+	public List<Move> calculatePossibleMoves(Board board) {
 		List<Move> legalMoves = new ArrayList<>();
 		int destination;
 
@@ -29,11 +28,11 @@ public class Queen extends Piece {
 			while (Exceptions.posExists(destination)) { // existence and anti-wrapping/exceptions to candidate move rules
 				destination += currentPossibilty;
 				if (Exceptions.posExists(destination) && !Exceptions.isWrapping(this, currentPossibilty)){
-					if (!board[destination].isOccupied()){
-						legalMoves.add(new Move());
-					}else if (board[destination].isOccupied()){
-						if (board[destination].getPiece().getColor() != color)
-							legalMoves.add(new Move());
+					if (!board.getTile(destination).isOccupied()){
+						legalMoves.add(new Move(pos, destination, board));
+					}else if (board.getTile(destination).isOccupied()){
+						if (board.getTile(destination).getPiece().getColor() != color)
+							legalMoves.add(new Move(pos, destination, board));
 					}
 					break;
 				}

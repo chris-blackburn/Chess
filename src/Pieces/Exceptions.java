@@ -1,6 +1,4 @@
-package Game;
-
-import Pieces.Piece;
+package Pieces;
 
 public class Exceptions { // there are many exceptions to the rules when on the edges of the board, this class fixes that
 
