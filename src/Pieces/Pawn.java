@@ -27,16 +27,16 @@ public class Pawn extends Piece {
 			destination = pos + (currentPossibilty * direction());
 			if(Exceptions.posExists(destination)){ // existence
 				if (currentPossibilty == 8 && !board.getTile(destination).isOccupied()){ // normal moves
-					legalMoves.add(new Move());
+					legalMoves.add(new Move(pos, destination, board));
 				} else if(currentPossibilty == 16 
 						&& !board.getTile(destination).isOccupied() 
 						&& isJumpingOtherPiece(board, destination)
 						&& isFirstMove()){ // jump move
-					legalMoves.add(new Move());
+					legalMoves.add(new Move(pos, destination, board));
 				} else if(!Exceptions.isWrapping(this, currentPossibilty) // capture moves
 						&& board.getTile(destination).isOccupied()
 						&& board.getTile(destination).getPiece().getColor() != color){
-					legalMoves.add(new Move());
+					legalMoves.add(new Move(pos, destination, board));
 				}
 			}
 		}
