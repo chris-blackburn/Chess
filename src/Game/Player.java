@@ -7,40 +7,30 @@ import Pieces.Piece;
 public class Player {
 	
 	private final char color;
-	private Board board;
 	private Collection<Piece> activePieces;
 	private final Piece king;
 	
 	
-	public Player(Board board, Collection<Piece> activePieces) {
-		this.board = board;
+	public Player(Collection<Piece> activePieces) {
 		this.activePieces = activePieces;
 		king = getKing();
-		color = king.getID();
+		color = king.getColor();
 	}	
-	
-	private Piece getKing() {
-		for (Piece piece : activePieces)
-			if(piece.getID() == 'K' || piece.getID() == 'k')
-				return piece;
-		return null;
-	}
 	
 	public void makeMove(Move move) {
 		move.executeMove();
 	}
 	
-	//TODO get dese done l8a
-	public boolean isInCheck() {
-		return false;
+	//to be used for check, check mate etc.
+	private Piece getKing() {
+		for (Piece piece : activePieces)
+			if(piece.getID() == 'K' || piece.getID() == 'k')
+				return piece;
+
+		return null;
 	}
 	
-	public boolean isInCheckMate() {
-		return false;
+	public char getColor() {
+		return color;
 	}
-	
-	public boolean isInStaleMate() {
-		return false;
-	}
-	
 }

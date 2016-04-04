@@ -1,9 +1,10 @@
 package Main;
 
-import Game.Game;
+import Game.GameManager;
 
 public class Main {
 	public static void main(String args[]){
-		Game game = new Game();
+		@SuppressWarnings("unused")
+		GameManager game = new GameManager();
 	}
 }

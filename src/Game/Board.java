@@ -1,90 +1,15 @@
 package Game;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import Pieces.*;
 
 public class Board {
-	
-	private final Player whitePlayer;
-	private final Player blackPlayer;
-	
-	// algebraic notation of the board, will be used to print moves
-	private final String[] algebraicNotation = { "a8", "b8", "c8", "d8", "e8", "f8", "g8", "h8", "a7", "b7", "c7", "d7", "e7",
-			"f7", "g7", "h7", "a6", "b6", "c6", "d6", "e6", "f6", "g6", "h6", "a5", "b5", "c5", "d5", "e5", "f5", "g5",
-			"h5", "a4", "b4", "c4", "d4", "e4", "f4", "g4", "h4", "a3", "b3", "c3", "d3", "e3", "f3", "g3", "h3", "a2",
-			"b2", "c2", "d2", "e2", "f2", "g2", "h2", "a1", "b1", "c1", "d1", "e1", "f1", "g1", "h1" };
- 
+
 	private static final int BOARD_SIZE = 8 * 8;
-	
-	private final Collection<Piece> initPieces = setPieces();
-	private Tile[] board;
-	
-	// finds all active pieces on the board
-	private Collection<Piece> whitePieces;
-	private Collection<Piece> blackPieces;
-	
-	private void calculateActivePieces() {
-		List<Piece> activePieces = new ArrayList<>();
-		// find all white pieces
-		for (Tile tile : board)
-			if (tile.isOccupied()) 
-				if (tile.getPiece().getColor() == 'w') 
-					activePieces.add(tile.getPiece());
-		whitePieces = activePieces; 
-		
-		activePieces.clear();
-	 	
-		// find all black pieces
-		for (Tile tile : board)
-			if (tile.isOccupied()) 
-				if (tile.getPiece().getColor() == 'b') 
-					activePieces.add(tile.getPiece());
-		blackPieces = activePieces;
-		
-		activePieces.clear();
-	}
-	
-	Collection<Move> whitePossibleMoves;
-	Collection<Move> blackPossibleMoves;
-	
-	private Collection<Move> calculatePossibleMoves(Collection<Piece> pieces) {
-		List<Move> possibleMoves = new ArrayList<>();
-		for (Piece piece : pieces)
-			possibleMoves.addAll(piece.calculatePossibleMoves(this));
-		return possibleMoves;
-	}
-	
-	public Board() {
-		board = new Tile[BOARD_SIZE];
-		
-		// fills board with null Tiles
-		for (int i = 0; i < BOARD_SIZE; i++)
-			board[i] = new Tile();
-		
-		//adds all pieces in starting positions
-		for (Piece piece : initPieces)
-			board[piece.getPos()].setPiece(piece);
-		
-		updateBoard();	
-		
-		whitePlayer = new Player(this, whitePieces);
-		blackPlayer = new Player(this, blackPieces);
-	}
-	
-	public void updateBoard() {
-		
-		calculateActivePieces();
-		
-		whitePossibleMoves = calculatePossibleMoves(whitePieces);
-		blackPossibleMoves = calculatePossibleMoves(blackPieces);
-	}
-	
-	public Tile getTile(int pos) {
-		return board[pos];
-	}
+
+	private final List<Piece> initPieces = setPieces();
 	
 	private List<Piece> setPieces() {
 		
@@ -122,6 +47,83 @@ public class Board {
 		
 		return pieces;
 	}
+
+	// finds all active pieces on the board
+	private List<Piece> whitePieces = new ArrayList<>();
+	private List<Piece> blackPieces = new ArrayList<>();
+	
+	// calculate all the possible moves for the current board state
+	private void calculateActivePieces() {
+		whitePieces.clear();
+		blackPieces.clear();
+		
+		List<Piece> activePieces = new ArrayList<>();
+		// find all white pieces
+		for (Tile tile : board)
+			if (tile.isOccupied()) 
+				if (tile.getPiece().getColor() == 'w') 
+					activePieces.add(tile.getPiece());
+		whitePieces.addAll(activePieces);
+		
+		activePieces.clear();
+	 	
+		// find all black pieces
+		for (Tile tile : board)
+			if (tile.isOccupied()) 
+				if (tile.getPiece().getColor() == 'b') 
+					activePieces.add(tile.getPiece());
+		blackPieces.addAll(activePieces);
+		
+		activePieces.clear();
+	}
+	
+	List<Move> whitePossibleMoves;
+	List<Move> blackPossibleMoves;
+	
+	private List<Move> calculatePossibleMoves(List<Piece> pieces) {
+		List<Move> possibleMoves = new ArrayList<>();
+		for (Piece piece : pieces)
+			possibleMoves.addAll(piece.calculatePossibleMoves(this));
+		return possibleMoves;
+	}
+	
+	private final Player whitePlayer;
+	private final Player blackPlayer;
+	
+	//TODO switch between players
+	
+	private Tile[] board;
+	
+	public Board() {
+		board = new Tile[BOARD_SIZE];
+		
+		// fills board with null Tiles
+		for (int i = 0; i < BOARD_SIZE; i++)
+			board[i] = new Tile();
+		
+		//adds all pieces in starting positions
+		for (Piece piece : initPieces)
+			board[piece.getPos()].setPiece(piece);
+		
+		updateBoard();	
+		
+		whitePlayer = new Player(whitePieces);
+		blackPlayer = new Player(blackPieces);
+	}
+	
+	public void updateBoard() {
+		
+		calculateActivePieces();
+		
+		whitePossibleMoves = calculatePossibleMoves(whitePieces);
+		blackPossibleMoves = calculatePossibleMoves(blackPieces);
+		
+		System.out.println(this);
+	}
+	
+	public Tile getTile(int pos) {
+		return board[pos];
+	}
 	
 	public String toString() {
 		String string = new String();
@@ -135,6 +137,7 @@ public class Board {
 				string += "@  \n";
 			else
 				string += board[i - 1].getPiece().getID() + " \n";
+
 		return string;
 	}
 }
