@@ -13,7 +13,7 @@ public class Game {
 	public void startGameDebug() {
 		board = new Board();
 		Player currentPlayer = board.getCurrentPlayer();
-		int pos = -1, destination = -1;
+		int pos, destination;
 		
 		@SuppressWarnings("resource")
 		Scanner scan = new Scanner(System.in);
