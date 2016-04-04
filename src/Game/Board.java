@@ -48,38 +48,26 @@ public class Board {
 		return pieces;
 	}
 
-	// finds all active pieces on the board
+	// lists of all active pieces on the board
 	private List<Piece> whitePieces = new ArrayList<>();
 	private List<Piece> blackPieces = new ArrayList<>();
 	
-	// calculate all the possible moves for the current board state
+	// calculate all the active pieces for the current board state
 	private void calculateActivePieces() {
-		whitePieces.clear();
-		blackPieces.clear();
-		
-		List<Piece> activePieces = new ArrayList<>();
 		// find all white pieces
 		for (Tile tile : board)
 			if (tile.isOccupied()) 
 				if (tile.getPiece().getColor() == 'w') 
-					activePieces.add(tile.getPiece());
-		whitePieces.addAll(activePieces);
-		
-		activePieces.clear();
-	 	
-		// find all black pieces
-		for (Tile tile : board)
-			if (tile.isOccupied()) 
-				if (tile.getPiece().getColor() == 'b') 
-					activePieces.add(tile.getPiece());
-		blackPieces.addAll(activePieces);
-		
-		activePieces.clear();
+					whitePieces.add(tile.getPiece());
+				else
+					blackPieces.add(tile.getPiece());
 	}
 	
+	// lists of all possible moves on the board
 	List<Move> whitePossibleMoves;
 	List<Move> blackPossibleMoves;
 	
+	// calculate all the possible moves for the current board state
 	private List<Move> calculatePossibleMoves(List<Piece> pieces) {
 		List<Move> possibleMoves = new ArrayList<>();
 		for (Piece piece : pieces)
@@ -89,8 +77,18 @@ public class Board {
 	
 	private final Player whitePlayer;
 	private final Player blackPlayer;
+	public boolean currentPlayerIsWhite = true;
 	
-	//TODO switch between players
+	public void switchCurrentPlayer() {
+		currentPlayerIsWhite = !currentPlayerIsWhite;
+	}
+	
+	public Player getCurrentPlayer() {
+		if (currentPlayerIsWhite){
+			return whitePlayer;
+		} else
+			return blackPlayer;
+	}
 	
 	private Tile[] board;
 	
@@ -105,18 +103,34 @@ public class Board {
 		for (Piece piece : initPieces)
 			board[piece.getPos()].setPiece(piece);
 		
-		updateBoard();	
-		
-		whitePlayer = new Player(whitePieces);
-		blackPlayer = new Player(blackPieces);
-	}
-	
-	public void updateBoard() {
-		
 		calculateActivePieces();
 		
 		whitePossibleMoves = calculatePossibleMoves(whitePieces);
 		blackPossibleMoves = calculatePossibleMoves(blackPieces);
+		
+		whitePlayer = new Player(whitePieces, whitePossibleMoves);
+		blackPlayer = new Player(blackPieces, blackPossibleMoves);
+		
+		System.out.println(this);
+	}
+	
+	public void updateBoard() {
+		// clears active pieces lists
+		whitePieces.clear();
+		blackPieces.clear();
+		
+		calculateActivePieces();
+		
+		// clears possible moves lists
+		whitePossibleMoves.clear();
+		blackPossibleMoves.clear();
+		
+		// refreshes all the lists
+		whitePossibleMoves = calculatePossibleMoves(whitePieces);
+		blackPossibleMoves = calculatePossibleMoves(blackPieces);
+		
+		whitePlayer.updateLists(whitePieces, whitePossibleMoves);
+		blackPlayer.updateLists(blackPieces, blackPossibleMoves);
 		
 		System.out.println(this);
 	}

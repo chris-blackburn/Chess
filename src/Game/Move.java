@@ -18,14 +18,23 @@ public class Move {
 	}
 	
 	// simple movement
-	public void executeMove() {
+	public void executeCurrentMove() {
 		board.getTile(destination).setPiece(board.getTile(pos).getPiece());
 		board.getTile(pos).setPiece(null);
+		board.getTile(destination).getPiece().setPos(destination);
+		
+		//System.out.println(this);
 	}
 	
 	// simple implementation of move representation
 	public String toString() {
 		char pieceAtPos = board.getTile(pos).getPiece().getID();
-		return pieceAtPos + algebraicNotation[pos] + " --> " + algebraicNotation[destination];
+		return pieceAtPos + algebraicNotation[pos] + " --> " + pieceAtPos + algebraicNotation[destination] + " or " + pos + " --> " + destination;
+	}
+
+	public boolean hasCoordinates(int pos, int destination) {
+		if (this.pos == pos && this.destination == destination)
+			return true;
+		return false;
 	}
 }
