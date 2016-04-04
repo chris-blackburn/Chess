@@ -7,10 +7,10 @@ public class Game {
 	private static Board board;
 
 	public Game() {
-		startGame();
+		startGameDebug();
 	}
 	
-	public void startGame() {
+	public void startGameDebug() {
 		board = new Board();
 		Player currentPlayer = board.getCurrentPlayer();
 		int pos = -1, destination = -1;
