@@ -7,7 +7,6 @@ public class Game {
 	private static Board board;
 
 	public Game() {
-		startGameDebug();
 	}
 	
 	public void startGameDebug() {
