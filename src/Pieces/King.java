@@ -25,7 +25,7 @@ public class King extends Piece{
 		
 		for (int currentPossibilty : CANDIDATE_MOVES){
 			destination = pos + currentPossibilty;
-			if(Exceptions.posExists(destination) && !Exceptions.isWrapping(this, currentPossibilty)){ // existence and anti-wrapping/exceptions to candidate move rules
+			if(Exceptions.posExists(destination) && Exceptions.isWrapping(this, currentPossibilty, destination)){ // existence and anti-wrapping/exceptions to candidate move rules
 				if (!board.getTile(destination).isOccupied() /*and doesn't place you in check */){
 					legalMoves.add(new Move(pos, destination, board));
 				}else if (board.getTile(destination).isOccupied() /*and doesn't place you in check */){

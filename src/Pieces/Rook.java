@@ -21,20 +21,21 @@ public class Rook extends Piece{
 	@Override
 	public List<Move> calculatePossibleMoves(Board board) {
 		List<Move> legalMoves = new ArrayList<>();
-		int destination;
 
 		for (int currentPossibilty : CANDIDATE_MOVES){
-			destination = pos;
+			int destination = pos;
 			while (Exceptions.posExists(destination)) { // existence and anti-wrapping/exceptions to candidate move rules
+				if (Exceptions.isWrapping(this, currentPossibilty, destination))
+					break;
 				destination += currentPossibilty;
-				if (Exceptions.posExists(destination) && !Exceptions.isWrapping(this, currentPossibilty)){
-					if (!board.getTile(destination).isOccupied()){
+				if (Exceptions.posExists(destination)) {
+					if (!board.getTile(destination).isOccupied()) {
 						legalMoves.add(new Move(pos, destination, board));
-					}else if (board.getTile(destination).isOccupied()){
+					}else {
 						if (board.getTile(destination).getPiece().getColor() != color)
 							legalMoves.add(new Move(pos, destination, board));
+						break;
 					}
-					break;
 				}
 			}
 		}

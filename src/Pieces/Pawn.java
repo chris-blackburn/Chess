@@ -30,10 +30,10 @@ public class Pawn extends Piece {
 					legalMoves.add(new Move(pos, destination, board));
 				} else if(currentPossibilty == 16 
 						&& !board.getTile(destination).isOccupied() 
-						&& isJumpingOtherPiece(board, destination)
+						&& !isJumpingOtherPiece(board, destination)
 						&& isFirstMove()){ // jump move
 					legalMoves.add(new Move(pos, destination, board));
-				} else if(!Exceptions.isWrapping(this, currentPossibilty) // capture moves
+				} else if(Exceptions.isWrapping(this, currentPossibilty, destination) // capture moves
 						&& board.getTile(destination).isOccupied()
 						&& board.getTile(destination).getPiece().getColor() != color){
 					legalMoves.add(new Move(pos, destination, board));
@@ -50,10 +50,10 @@ public class Pawn extends Piece {
 	}
 	
 	private boolean isFirstMove(){
-		if (color == 'w' && Exceptions.SEVENTH_ROW[pos]){
-			return true;
-		} else if (color == 'b' && Exceptions.SECOND_ROW[pos]){
-			return true;
+		if (color == 'w' ){
+			return Exceptions.SEVENTH_ROW[pos];
+		} else if (color == 'b' ){
+			return Exceptions.SECOND_ROW[pos];
 		}
 		return false;
 	}

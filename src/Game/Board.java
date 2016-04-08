@@ -151,7 +151,6 @@ public class Board {
 				string += "@  \n";
 			else
 				string += board[i - 1].getPiece().getID() + " \n";
-
 		return string;
 	}
 }
